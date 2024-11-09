@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Create Map Sample | Longdo Map</title>
+      <style type="text/css">
+        html{
+          height:100%;
+        }
+        body{
+          margin:0px;
+          height:100%;
+        }
+        #map {
+          height: 100%;
+        }
+      </style>
+      <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!-- Navbar Start -->
+   <div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 text-primary"><span class="text-dark">Tiao</span>Thai</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="index.html" class="nav-item nav-link active">หน้าหลัก</a>
+                    <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
+                    <a href="service.html" class="nav-item nav-link">ใช้บริการ</a>
+                    <a href="map.html" class="nav-item nav-link">การเดินทาง</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">อื่นๆ</a>
+                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                            <a href="blog.html" class="dropdown-item">แชร์ประสบการณ์</a>
+                            <a href="single.html" class="dropdown-item">ลายละเอียด</a>
+                            <a href="destination.html" class="dropdown-item">ยอดนิยม</a>
+                            <a href="guide.html" class="dropdown-item">Travel Guides</a>
+                            <a href="testimonial.html" class="dropdown-item">รีวิว</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">ติดต่อ</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+  </body>
+   
+
+  <body onload="init();">
+    <div id="result"></div>
+<script>
+    map.Search.placeholder(
+    document.getElementById('result')
+);
+search = document.getElementById('search');
+
+//When user press an Enter button #search
+search.onkeyup = function(event) {
+  if((event || window.event).keyCode != 13)
+     return;
+  doSearch();
+}
+
+function doSearch() {
+  map.Search.search(search.value, {
+    area: document.getElementById('area').value,
+    tag: document.getElementById('tag').value,
+    span: document.getElementById('span').value,
+    limit: document.getElementById('limit').value
+  });
+  suggest.style.display = 'none';
+}
+map.Search.search(KEYWORD, OPTIONS);
+map.Search.language(LANGUAGE);
+search.oninput = function() {
+  if (search.value.length < 3) {
+    suggest.style.display = 'none';
+    return;
+  }
+  
+  map.Search.suggest(search.value, {
+    area: document.getElementById('area').value
+  });
+};
+suggest = document.getElementById('suggest');
+
+map.Event.bind('suggest', function(result) {
+  if (result.meta.keyword != search.value) return;
+  
+  suggest.innerHTML = '';
+  for (var i = 0, item; item = result.data[i]; ++i) {
+    longdo.Util.append(suggest, 'a', {
+      innerHTML: item.d,
+      href: 'javascript:doSuggest(\'' + item.w + '\')'
+    });
+  }
+  suggest.style.display = 'block';
+});
+      
+function doSuggest(value) {
+  search.value = value;
+  doSearch();
+}
+</script>
+      <div id="map"></div>
+
+
+      <script type="text/javascript" src="https://api.longdo.com/map/?key=850b674401358c57b9b3af61901b5b37"></script>
+      <script>
+        function init() {
+          var map = new longdo.Map({
+            placeholder: document.getElementById('map')
+          });
+          map.location(longdo.LocationMode.Geolocation);
+          map.zoom(17, true);
+
+          var marker = new longdo.Marker(longdo.LocationMode.Geolocation);
+          map.Overlays.add(marker);
+
+          map.Route.placeholder(document.getElementById('result'));
+          var Marker = new longdo.Marker(
+            longdo.LocationMode.Geolocation,
+  { title: 'Victory monument', detail: 'I\'m here' }
+); // Create Marker Overlay
+map.Route.search();
+map.Route.add(Marker);
+map.Route.add(longdo.LocationMode.Geolocation);
+
+map.Route.placeholder(document.getElementById('route'));
+map.Route.enableContextMenu();
+map.Route.auto(true);
+map.Route.mode(longdo.RouteMode.Cost);
+map.Route.mode(longdo.RouteMode.Distance);
+map.Route.enableRoute(longdo.RouteType.Tollway, false);
+map.Route.enableRestrict(longdo.RouteRestrict.Bike, true);
+        }
+      </script>
+  </body>
+</html>
