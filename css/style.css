@@ -53,7 +53,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 #result {
-  margin-top: 260px;
+  margin-top: 1000px;
 }
 #searchpanel { display: flex; align-items: center; }
 .top-searchpanel, .middle-searchpanel, .bottom-searchpanel { display: flex; align-items: center; }
