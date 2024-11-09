@@ -52,6 +52,33 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
+#result {
+  margin-top: 260px;
+}
+#searchpanel { display: flex; align-items: center; }
+.top-searchpanel, .middle-searchpanel, .bottom-searchpanel { display: flex; align-items: center; }
+.top-searchpanel > * { margin-right: 10px; }
+.middle-searchpanel > * { margin-right: 20px; }
+.bottom-searchpanel > * { margin-left: auto; }
+#suggest { display: none; }
+#search {
+  /* กำหนดขนาดของช่อง */
+  width: 200px; /* ปรับขนาดตามต้องการ */
+  height: 30px;
+
+  /* กำหนดรูปแบบของตัวอักษร */
+  font-size: 16px;
+  padding: 5px 10px; /* เพิ่มพื้นที่ว่างภายในช่อง */
+
+  /* กำหนดลักษณะของขอบ */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  /* กำหนดสีพื้นหลังและสีตัวอักษร */
+  background-color: #fff;
+  color: #333;
+}
+
 
 body {
   margin: 0;

@@ -1,156 +1,212 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-      <link rel="stylesheet" href="css/style.css">
-      <meta charset="UTF-8">
-        <title>Routing Map Sample | Longdo Map</title>
-        <style type="text/css">
-          html{
-            height:100%; 
-          }
-          body{ 
-            margin:0px;
-            height:100%; 
-          }
-          #map {
-            height: 100%;
-          }
-          #result {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            width: 1px;
-            height: 80%;
-            margin: auto;
-            border: 4px solid #dddddd;
-            background: #ffffff;
-            overflow: auto;
-            z-index: 2;
-        }
-        </style>
 
-        <script type="text/javascript" src="https://api.longdo.com/map/?key=850b674401358c57b9b3af61901b5b37"></script>
-        <script>
-          function init() {
-            map = new longdo.Map({
-              placeholder: document.getElementById('map')
-            });
-            map.Route.placeholder(document.getElementById('result'));
-            map.Route.add(new longdo.Marker({ lon: 100.538316, lat: 13.764953 },
-                { 
-                    title: 'Victory monument', 
-                    detail: 'I\'m here' 
-                }
-            ));
-            map.Route.add({ lon: 100.6094442307949, lat: 14.080902636323557 });
-            map.Route.search();
-          }
-          map.Route.placeholder(document.getElementById('result'));
-          var Marker = new longdo.Marker(
-  { lon: 100.538316, lat: 13.764953 },
-  { title: 'Victory monument', detail: 'I\'m here' }
-); // Create Marker Overlay
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Routing Map Sample | Longdo Map</title>
+  <style type="text/css">
+    html {
+      height: 100%;
+    }
 
-map.Route.add(Marker);
-map.Route.add({ lon: 100, lat: 15 });
-map.Route.search();
-map.Route.placeholder(document.getElementById('route'));
-map.Route.enableContextMenu();
-map.Route.auto(true);
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
+    body {
+      margin: 0px;
+      height: 100%;
+    }
 
-function showPosition(position) {
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
-  console.log("Latitude: " + latitude);
-  console.log("Longitude: " + longitude);
-  // ที่นี่คุณสามารถนำค่า latitude และ longitude ไปใช้งานต่อได้ เช่น แสดงบนแผนที่ หรือส่งไปยังเซิร์ฟเวอร์
-}
+    #map {
+      height: 100%;
+    }
 
-// เรียกใช้ฟังก์ชัน getLocation เพื่อเริ่มกระบวนการ
-getLocation();
-        </script>
-  </head>
-  <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                  <div class="d-inline-flex align-items-center">
-                      <p><i class="fa fa-envelope mr-2"></i>tedd0781@gmail.com</p>
-                      <p class="text-body px-3">|</p>
-                      <p><i class="fa fa-phone-alt mr-2"></i>063 035 6927</p>
-                  </div>
-              </div>
-              <div class="col-lg-6 text-center text-lg-right">
-                  <div class="d-inline-flex align-items-center">
-                      <a class="text-primary px-3" href="">
-                          <i class="fab fa-facebook-f"></i>
-                      </a>
-                      <a class="text-primary px-3" href="">
-                          <i class="fab fa-twitter"></i>
-                      </a>
-                      <a class="text-primary px-3" href="">
-                          <i class="fab fa-linkedin-in"></i>
-                      </a>
-                      <a class="text-primary px-3" href="">
-                          <i class="fab fa-instagram"></i>
-                      </a>
-                      <a class="text-primary pl-3" href="">
-                          <i class="fab fa-youtube"></i>
-                      </a>
-                  </div>
-              </div>
+    #result {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      height: 80%;
+      margin: auto;
+      border: 4px solid #dddddd;
+      background: #ffffff;
+      overflow: auto;
+      z-index: 2;
+    }
+  </style>
+
+  <script type="text/javascript" src="https://api.longdo.com/map/?key=850b674401358c57b9b3af61901b5b37"></script>
+
+</head>
+
+<body>
+  <!-- Topbar Start -->
+  <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+          <div class="d-inline-flex align-items-center">
+            <p><i class="fa fa-envelope mr-2"></i>tedd0781@gmail.com</p>
+            <p class="text-body px-3">|</p>
+            <p><i class="fa fa-phone-alt mr-2"></i>063 035 6927</p>
           </div>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+          <div class="d-inline-flex align-items-center">
+            <a class="text-primary px-3" href="">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="text-primary px-3" href="">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class="text-primary px-3" href="">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a class="text-primary px-3" href="">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a class="text-primary pl-3" href="">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
   <!-- Topbar End -->
-    <!-- Navbar Start -->
-   <div class="container-fluid position-relative nav-bar p-0">
+  <!-- Navbar Start -->
+  <div class="container-fluid position-relative nav-bar p-0">
     <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-            <a href="" class="navbar-brand">
-                <h1 class="m-0 text-primary"><span class="text-dark">Tiao</span>Thai</h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                <div class="navbar-nav ml-auto py-0">
-                    <a href="index.html" class="nav-item nav-link">หน้าหลัก</a>
-                    <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
-                    <a href="service.html" class="nav-item nav-link">ใช้บริการ</a>
-                    <a href="map.html" class="nav-item nav-link active">การเดินทาง</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">อื่นๆ</a>
-                        <div class="dropdown-menu border-0 rounded-0 m-0">
-                            <a href="blog.html" class="dropdown-item">แชร์ประสบการณ์</a>
-                            <a href="single.html" class="dropdown-item">ลายละเอียด</a>
-                            <a href="destination.html" class="dropdown-item">ยอดนิยม</a>
-                            <a href="guide.html" class="dropdown-item">Travel Guides</a>
-                            <a href="testimonial.html" class="dropdown-item">รีวิว</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">ติดต่อ</a>
-                </div>
+      <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+        <a href="" class="navbar-brand">
+          <h1 class="m-0 text-primary"><span class="text-dark">Tiao</span>Thai</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+          <div class="navbar-nav ml-auto py-0">
+            <a href="index.html" class="nav-item nav-link">หน้าหลัก</a>
+            <a href="about.html" class="nav-item nav-link">เกี่ยวกับเรา</a>
+            <a href="service.html" class="nav-item nav-link">ใช้บริการ</a>
+            <a href="map.html" class="nav-item nav-link active">การเดินทาง</a>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">อื่นๆ</a>
+              <div class="dropdown-menu border-0 rounded-0 m-0">
+                <a href="blog.html" class="dropdown-item">แชร์ประสบการณ์</a>
+                <a href="single.html" class="dropdown-item">ลายละเอียด</a>
+                <a href="destination.html" class="dropdown-item">ยอดนิยม</a>
+                <a href="guide.html" class="dropdown-item">Travel Guides</a>
+                <a href="testimonial.html" class="dropdown-item">รีวิว</a>
+              </div>
             </div>
-        </nav>
+            <a href="contact.html" class="nav-item nav-link">ติดต่อ</a>
+          </div>
+        </div>
+      </nav>
     </div>
-</div>
-<!-- Navbar End -->
-  </body>
-   
+  </div>
+  <!-- Navbar End -->
 
-  <body onload="init();">
-    <div id="map"></div>
-    <div id="result"></div>
-  </body>
+
+  <div data-v-5c10ee6d="" class="searchpanel" id="searchpanel">
+    <div data-v-5c10ee6d="" class="top-searchpanel"> keyword: <input data-v-5c10ee6d="" id="search" type="search"
+        list="suggest" placeholder="Type at least 3 characters" autofocus="">
+      <div data-v-5c10ee6d="" id="suggest" style="display: none;"><a data-v-5c10ee6d="">ไม่พบข้อมูล</a></div><select
+        data-v-5c10ee6d="" id="language">
+        <option data-v-5c10ee6d="">th</option>
+        <option data-v-5c10ee6d="">en</option>
+      </select>
+    </div>
+    <div class="middle-searchpanel" data-v-5c10ee6d="">
+      <div data-v-5c10ee6d=""> area: <input id="area" type="text" data-v-5c10ee6d=""></div>
+      <div data-v-5c10ee6d=""> tag: <input id="tag" type="text" data-v-5c10ee6d=""></div>
+      <div data-v-5c10ee6d=""> span: <input id="span" type="text" data-v-5c10ee6d=""></div>
+      <div data-v-5c10ee6d=""> limit: <input id="limit" type="text" placeholder="20" data-v-5c10ee6d=""></div>
+    </div>
+    <div class="bottom-searchpanel" data-v-5c10ee6d=""><button id="submit" data-v-5c10ee6d=""
+        onclick="doSearch()">Search</button></div>
+  </div>
+
+  <script>
+    let map;
+    function init() {
+      map = new longdo.Map({
+        placeholder: document.getElementById('map')
+      });
+      map.Route.placeholder(document.getElementById('result'));
+      map.Route.add(new longdo.Marker({ lon: 100.538316, lat: 13.764953 },
+        {
+          title: 'Victory monument',
+          detail: 'I\'m here'
+        }
+      ));
+      map.Route.add({ lon: 100.6094442307949, lat: 14.080902636323557 });
+      map.Route.search();
+      map.Route.placeholder(document.getElementById('result'));
+      var Marker = new longdo.Marker(
+        { lon: 100.538316, lat: 13.764953 },
+        { title: 'Victory monument', detail: 'I\'m here' }
+      ); // Create Marker Overlay
+
+      map.Route.add(Marker);
+      map.Route.add({ lon: 100, lat: 15 });
+      map.Route.search();
+      map.Route.placeholder(document.getElementById('route'));
+      map.Route.enableContextMenu();
+      map.Route.auto(true);
+
+
+      search = document.getElementById('search');
+      //When user press an Enter button #search
+      search.onkeyup = function (event) {
+        console.log(event)
+        if ((event || window.event).keyCode != 13)
+          return;
+        doSearch();
+      }
+    }
+
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log("Latitude: " + latitude);
+      console.log("Longitude: " + longitude);
+      // ที่นี่คุณสามารถนำค่า latitude และ longitude ไปใช้งานต่อได้ เช่น แสดงบนแผนที่ หรือส่งไปยังเซิร์ฟเวอร์
+    }
+
+    // เรียกใช้ฟังก์ชัน getLocation เพื่อเริ่มกระบวนการ
+    getLocation();
+
+
+
+    function doSearch() {
+      console.log("do search" ,map)
+      search = document.getElementById('search');
+      console.log(search.value)
+      map.Search.search(search.value, {
+        area: document.getElementById('area').value,
+        tag: document.getElementById('tag').value,
+        span: document.getElementById('span').value,
+        limit: document.getElementById('limit').value
+      });
+      suggest.style.display = 'none';
+    }
+  </script>
+</body>
+
+
+<body onload="init();">
+  <div id="map"></div>
+  <div id="result"></div>
+</body>
+
 </html>
